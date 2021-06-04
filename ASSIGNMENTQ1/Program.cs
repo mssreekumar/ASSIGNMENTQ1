@@ -353,8 +353,25 @@ Note: Use of String function (Contains) and hasmap is not allowed, think of othe
         {
             try
             {
-                // write your code here.
-                return "null";
+                //Sentence is split into words, if the word doesn't contain Vowels as a starting letter,
+                //then first letter is moved to end of the word. For all the words, ma and a(based on index of the word) is appended
+                string[] words = sentence.Trim().Split();
+                StringBuilder output = new StringBuilder();
+                StringBuilder sb_temp = new StringBuilder();
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    string temp = words[i];
+                    sb_temp.Append("a");
+
+                    if (!(temp[0].Equals('A') || temp[0].Equals('a') || temp[0].Equals('E') || temp[0].Equals('e') || temp[0].Equals('I') || temp[0].Equals('i') || temp[0].Equals('O') || temp[0].Equals('o') || temp[0].Equals('U') || temp[0].Equals('u')))
+                    {
+                        temp = temp.Substring(1) + temp[0];
+                    }
+                    output.Append(temp + "ma" + sb_temp + " ");
+
+                }
+                return output.ToString().TrimEnd();
 
             }
             catch (Exception)
